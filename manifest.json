@@ -1,5 +1,5 @@
 {
-	"short_name":"jseditor",
+	"short_name":"scripteditor",
     "display": "standalone",
 	"orientation": "portrait-primary"
 }
