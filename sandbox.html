@@ -1,0 +1,41 @@
+<html style="overflow:auto;position:absolute;left:0;top:0;right:0;bottom:0">
+	<head>
+		<script>
+			console.log=s=>{
+				if (s instanceof Error) s=s.toString()
+				else if (typeof s=='object') s=JSON.stringify(s)
+				document.body.innerHTML+=s+'<br/>'
+			}
+			addEventListener('message',e=>{
+				document.body.innerHTML=''
+				const startTime=new Date()
+				const req=JSON.parse(e.data)
+				try{
+					if (req.lang=='javascript')
+						(new Function(req.code))()
+					else{
+						var xhr=new XMLHttpRequest()
+						// xhr.open('POST','https://test-git-master.jwhj.now.sh/py/a.py',true)
+						xhr.open('POST','http://localhost:8081',true)
+						xhr.send(req.code)
+						xhr.onreadystatechange=()=>{
+							if (xhr.readyState==4 && xhr.status==200){
+								console.log(xhr.responseText.replace('\n','<br/>'))
+								console.log('<hr/>')
+								console.log('Time: '+(new Date()-startTime)+'ms')
+							}
+						}
+					}
+				}catch(ex){
+					console.log(ex)
+				}
+				if (req.lang=='javascript'){
+					console.log('<hr/>')
+					console.log('Time: '+(new Date()-startTime)+'ms')
+				}
+			})
+		</script>
+		<link rel="stylesheet"href="plm.css"/>
+	</head>
+	<body></body>
+</html>

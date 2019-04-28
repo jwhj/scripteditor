@@ -1,0 +1,63 @@
+html{
+	overflow: hidden;
+}
+@font-face{
+	font-family: TSCu_Comic;
+	src: url('./TSCu_Comic.ttf');
+}
+body{
+	background-color: #222;
+	color: white;
+	font-size: 25px;
+	font-family: TSCu_Comic;
+}
+#app{
+	height: 95%;
+	box-sizing: border-box;
+	-webkit-tap-highlight-color: transparent;
+}
+.btn{
+	outline: white solid 2px;
+	transition: background-color 1s;
+	padding: 7px 10px;
+	display: inline-block;
+	margin: 5px 1px;
+}
+.btn:hover{
+	background-color: rgb(150,150,150);
+}
+.b1{
+	transition: margin-left 1s,background-color 1s;
+	width: 33%;
+}
+.b1:hover{
+	margin-left: 100px;
+}
+.frm{
+	text-align: center;
+	width: 100%;
+	margin-top: 5%;
+}
+.nf-enter-active{
+	transition: transform 1s;
+}
+.nf-enter{
+	transform: scale(0);
+}
+.nf-enter-to{
+	transform: scale(1);
+}
+.ctrlbtn{
+	width: 31%;
+	display: inline-block;
+	transition: background-color 0.3s;
+	font-family: sans-serif;
+}
+.ctrlbtn:active{
+	background-color: #999;
+}
+@media screen and (orientation: portrait){
+	.b1{
+		width: 80%;
+	}
+}

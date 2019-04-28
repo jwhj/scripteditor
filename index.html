@@ -1,0 +1,43 @@
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+		<meta name="viewport"content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no"/>	
+		<link rel="manifest" href="manifest.json">
+		<link rel="stylesheet"href="plm.css"/>
+		<link rel="stylesheet"href="a.css"/>
+		<link rel="stylesheet"href="codemirror/lib/codemirror.css">
+		<link rel="stylesheet"href="codemirror/theme/monokai.css"/>
+		<script src="vue.min.js"></script>
+		<script src="codemirror/lib/codemirror.js"></script>
+		<script src="codemirror/mode/javascript/javascript.js"></script>
+		<script src="codemirror/mode/python/python.js"></script>
+	</head>
+	<body>
+		<div id="app"class="frm"@click="showMenu=false">
+			<editor v-model="code"></editor>
+			<div class="btn"@click="run">Run</div>
+			<div class="btn"@click="cm.setValue('')">New</div>
+			<div class="btn"@click="saveFile">Save</div>
+			<div class="btn"@click="deleteFile">Delete</div><br/>
+			<select v-model="lang"@change="changLang">
+				<option value="javascript">Javascript</option>
+				<option value="python">Python</option>
+			</select>
+			<div class="iframeWrapper">
+				<iframe :id="id"src="sandbox.html"style="box-sizing:border-box;width:100%;height:100%;border:none"></iframe>
+			</div>
+			<div class="menuBtn"@click.stop="showMenu=!showMenu">Menu</div>
+			<transition name="menuTrans">
+				<div class="menu"v-show="showMenu">
+					<p v-for="i of fileCnt"@click="loadFile(i-1)"class="fileItem">{{fileList[i-1]}}</p>
+				</div>
+			</transition>
+		</div>
+		<template id="editorTpl">
+			<div class="frm">
+				<textarea id="blabla"v-model="value"></textarea>
+			</div>
+		</template>
+		<script src="index.js"></script>
+	</body>
+</html>

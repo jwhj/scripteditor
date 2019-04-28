@@ -1,0 +1,48 @@
+.CodeMirror{
+	text-align:left;
+	font-size:15px;
+}
+select{
+	margin:3px;
+}
+.menuBtn{
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	text-align: center;
+}
+.menu{
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	text-align: center;
+	background-color: #EEE;
+	color: #222;
+	height: 80%;
+	overflow: auto;
+	z-index: 5;
+}
+.menuTrans-enter, .menuTrans-leave-to{
+	transform: translate(0,-100%);
+}
+.menuTrans-enter-to, .menuTrans-leave{
+	transform: translate(0,0);
+}
+.menuTrans-enter-active, .menuTrans-leave-active{
+	transition: transform 0.5s;
+}
+.fileItem{
+	transition: background-color 1s, color 1s;
+}
+.fileItem:hover{
+	background-color:#222;
+	color: #EEE;
+}
+.iframeWrapper{
+	height: 30%;
+	border:1px dashed;
+	overflow: auto;
+	-webkit-overflow-scrolling: touch;
+}
