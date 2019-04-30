@@ -32,7 +32,7 @@
 						xhr.send(req.code)
 						xhr.onreadystatechange=()=>{
 							if (xhr.readyState==4 && xhr.status==200){
-								var res=decodeURI(escape(xhr.responseText))
+								var res=decodeURIComponent(escape(xhr.responseText))
 								console.log(res.replace(/\n/g,'<br/>').replace(/ /g,'&nbsp;'))
 								console.log('<hr/>')
 								console.log('Time: '+(new Date()-startTime)+'ms')
