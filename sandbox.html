@@ -1,5 +1,16 @@
 <html style="overflow:auto;position:absolute;left:0;top:0;right:0;bottom:0">
 	<head>
+		<link rel="stylesheet"href="plm.css"/>
+		<style>
+			@font-face{
+				font-family: DejaVuSansMono;
+				src: url(DejaVuSansMono.ttf);
+			}
+			body{
+				font-family: DejaVuSansMono;
+				font-size: 15px;
+			}
+		</style>
 		<script>
 			console.log=s=>{
 				if (s instanceof Error) s=s.toString()
@@ -15,12 +26,12 @@
 						(new Function(req.code))()
 					else{
 						var xhr=new XMLHttpRequest()
-						xhr.open('POST','https://test-git-master.jwhj.now.sh/py/a.py',true)
-						// xhr.open('POST','http://localhost:8081',true)
+						// xhr.open('POST','https://test-git-master.jwhj.now.sh/py/a.py',true)
+						xhr.open('POST','http://localhost:8081',true)
 						xhr.send(req.code)
 						xhr.onreadystatechange=()=>{
 							if (xhr.readyState==4 && xhr.status==200){
-								console.log(xhr.responseText.replace('\n','<br/>'))
+								console.log(xhr.responseText.replace(/\n/g,'<br/>').replace(/ /g,'&nbsp;'))
 								console.log('<hr/>')
 								console.log('Time: '+(new Date()-startTime)+'ms')
 							}
@@ -35,7 +46,6 @@
 				}
 			})
 		</script>
-		<link rel="stylesheet"href="plm.css"/>
 	</head>
 	<body></body>
 </html>

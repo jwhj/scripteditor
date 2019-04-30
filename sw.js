@@ -1,7 +1,8 @@
-var cacheName="qazty"
+var cacheName="qa"
 var cacheFiles=[
 	'vue.min.js',
 	'TSCu_Comic.ttf',
+	'DejaVuSansMono.ttf',
 	'codemirror/lib/codemirror.css',
 	'codemirror/theme/monokai.css',
 	'codemirror/lib/codemirror.js',
