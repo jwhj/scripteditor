@@ -1,5 +1,6 @@
 <html style="overflow:auto;position:absolute;left:0;top:0;right:0;bottom:0">
 	<head>
+		<meta http-equiv="Content-Type"content="text/html;charset=utf-8"/>
 		<link rel="stylesheet"href="plm.css"/>
 		<style>
 			@font-face{
@@ -31,7 +32,8 @@
 						xhr.send(req.code)
 						xhr.onreadystatechange=()=>{
 							if (xhr.readyState==4 && xhr.status==200){
-								console.log(xhr.responseText.replace(/\n/g,'<br/>').replace(/ /g,'&nbsp;'))
+								var res=decodeURI(escape(xhr.responseText))
+								console.log(res.replace(/\n/g,'<br/>').replace(/ /g,'&nbsp;'))
 								console.log('<hr/>')
 								console.log('Time: '+(new Date()-startTime)+'ms')
 							}
