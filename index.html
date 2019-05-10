@@ -26,7 +26,7 @@
 			<div class="iframeWrapper">
 				<iframe :id="id"src="sandbox.html"style="box-sizing:border-box;width:100%;height:100%;border:none"></iframe>
 			</div>
-			<div class="menuBtn"@click.stop="showMenu=!showMenu">Menu</div>
+			<div class="menuBtn"@click.stop="showMenu=!showMenu">Files</div>
 			<transition name="menuTrans">
 				<div class="menu"v-show="showMenu">
 					<p v-for="i of fileCnt"@click="loadFile(i-1)"class="fileItem">{{fileList[i-1]}}</p>
