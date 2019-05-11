@@ -66,7 +66,7 @@ const vm=new Vue({
 		},
 		chkLongTap(){
 			var T=new Date()-this.beginTime
-			if (T>=500){
+			if (T>=300){
 				// alert(T)
 				this.consoleFullscreen=!this.consoleFullscreen
 			}
