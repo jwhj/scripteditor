@@ -24,6 +24,7 @@ const vm=new Vue({
 		id:'fsd',
 		lang:'javascript',
 		showMenu:false,
+		consoleFullscreen:false,
 		fileCnt:0,
 		fileList:[]
 	},
