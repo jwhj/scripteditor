@@ -24,6 +24,7 @@ const vm=new Vue({
 		id:'fsd',
 		lang:'javascript',
 		showMenu:false,
+		beginTime:new Date(),
 		consoleFullscreen:false,
 		fileCnt:0,
 		fileList:[]
@@ -62,6 +63,14 @@ const vm=new Vue({
 			const fileName=prompt('File name:')
 			localStorage.removeItem('file_'+fileName)
 			this.loadFiles()
+		},
+		chkLongTap(){
+			var T=new Date()-this.beginTime
+			if (T>=500){
+				// alert(T)
+				this.consoleFullscreen=!this.consoleFullscreen
+			}
+			else this.showMenu=!this.showMenu
 		}
 	},
 	mounted(){
