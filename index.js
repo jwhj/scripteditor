@@ -56,11 +56,13 @@ const vm=new Vue({
 		},
 		saveFile(){
 			const fileName=prompt('File name:')
+			if (!fileName) return
 			localStorage.setItem('file_'+fileName,this.code)
 			this.loadFiles()
 		},
 		deleteFile(){
 			const fileName=prompt('File name:')
+			if (!fileName) return
 			localStorage.removeItem('file_'+fileName)
 			this.loadFiles()
 		},
