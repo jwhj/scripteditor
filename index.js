@@ -5,11 +5,17 @@ location.search.substr(1).split('&').forEach(str=>{
 	argv[a[0]]=a[1]
 })
 console.log(argv)
+function utoa(s){
+	return btoa(unescape(encodeURIComponent(s)))
+}
+function atou(s){
+	return decodeURIComponent(escape(atob(s)))
+}
 function encode(s){
-	return btoa(s).replace(/\+/g,'-').replace(/\//g,'_').replace(/=/g,'')
+	return utoa(s).replace(/\+/g,'-').replace(/\//g,'_').replace(/=/g,'')
 }
 function decode(s){
-	return atob(s.replace(/_/g,'/').replace(/-/g,'+'))
+	return atou(s.replace(/_/g,'/').replace(/-/g,'+'))
 }
 const editor={
 	template:'#editorTpl',
