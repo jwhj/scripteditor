@@ -15,7 +15,7 @@
 	<body>
 		<div id="app"class="frm"@click="showMenu=false">
 			<editor v-model="code"></editor>
-			<a target="blank":href="'?code='+encode(code)">Share Code</a><br/>
+			<a target="blank":href="'?code='+encode(code)+'&lang='+lang">Share Code</a><br/>
 			<div class="btn"@click="run">Run</div>
 			<div class="btn"@click="cm.setValue('')">New</div>
 			<div class="btn"@click="saveFile">Save</div>
