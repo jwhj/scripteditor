@@ -1,4 +1,16 @@
 var cm
+const argv={}
+location.search.substr(1).split('&').forEach(str=>{
+	const a=str.split('=')
+	argv[a[0]]=a[1]
+})
+console.log(argv)
+function encode(s){
+	return btoa(s).replace(/\+/g,'-').replace(/\//g,'_').replace(/=/g,'')
+}
+function decode(s){
+	return atob(s.replace(/_/g,'/').replace(/-/g,'+'))
+}
 const editor={
 	template:'#editorTpl',
 	props:['value'],
@@ -8,12 +20,13 @@ const editor={
 		cm=this.cm=CodeMirror.fromTextArea(document.getElementById('blabla'),{
 			lineNumbers:true,
 			theme:'monokai',
-			mode:'javascript'
+			mode:argv.lang || 'javascript'
 		})
 		this.cm.on('change',()=>{
 			this.value=this.cm.getValue()
 			this.$emit('input',this.value)
 		})
+		if (argv.code) this.cm.setValue(decode(argv.code))
 	}
 }
 Vue.component('editor',editor)
@@ -22,7 +35,7 @@ const vm=new Vue({
 	data:{
 		code:'',
 		id:'fsd',
-		lang:'javascript',
+		lang:argv.lang || 'javascript',
 		showMenu:false,
 		beginTime:new Date(),
 		consoleFullscreen:false,
