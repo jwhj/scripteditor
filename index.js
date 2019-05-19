@@ -12,7 +12,7 @@ function atou(s){
 	return decodeURIComponent(escape(atob(s)))
 }
 function encode(s){
-	return utoa(s).replace(/\+/g,'-').replace(/\//g,'_').replace(/=/g,'')
+	return utoa(s).replace(/\+/g,'-').replace(/\//g,'_').replace(/=/g,'').replace(/jb/,'j`b')
 }
 function decode(s){
 	return atou(s.replace(/_/g,'/').replace(/-/g,'+').replace(/`/g,''))
