@@ -1,16 +1,30 @@
+body{
+	margin-bottom: 0;
+}
+#app{
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+}
+.frm{
+	margin-top: 0;
+}
 .CodeMirror{
-	text-align:left;
-	font-size:15px;
+	text-align: left;
+	font-size: 15px;
 }
 select{
-	margin:3px;
+	margin: 3px;
+}
+.btn{
+	margin: 5px;
 }
 .menuBtn{
-	position: absolute;
+	/* position: absolute;
 	bottom: 0;
 	left: 0;
 	width: 100%;
-	text-align: center;
+	text-align: center; */
 	z-index: 6;
 }
 .menu{
@@ -42,12 +56,14 @@ select{
 	color: #EEE;
 }
 .iframeWrapper{
-	height: 30%;
-	border:1px dashed;
+	flex: 1;
+	border: 1px dashed;
 	overflow: auto;
 	-webkit-overflow-scrolling: touch;
+	background-color: #222;
 }
 .iframeWrapperFullscreen{
+	/* flex: 0; */
 	width: 100%;
 	height: 100%;
 	position: fixed;
