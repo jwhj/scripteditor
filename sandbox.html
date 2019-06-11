@@ -28,7 +28,13 @@
 						(new Function(req.code))()
 					else{
 						var xhr=new XMLHttpRequest()
-						xhr.open('POST','https://test-git-master.jwhj.now.sh/py/a.py',true)
+						var url
+						if (req.lang=='python')
+							url='https://test-git-master.jwhj.now.sh/py/a.py'
+						else{
+							url=`https://njypvz-8080-${req.token}.dev.ide.live/`
+						}
+						xhr.open('POST',url,true)
 						// xhr.open('POST','http://localhost:8081',true)
 						xhr.send(req.code)
 						xhr.onreadystatechange=()=>{

@@ -1,4 +1,4 @@
-var cacheName="qa"
+var cacheName="qaz"
 var cacheFiles=[
 	'vue.min.js',
 	'TSCu_Comic.ttf',
@@ -7,7 +7,8 @@ var cacheFiles=[
 	'codemirror/theme/monokai.css',
 	'codemirror/lib/codemirror.js',
 	'codemirror/mode/javascript/javascript.js',
-	'codemirror/mode/python/python.js'
+	'codemirror/mode/python/python.js',
+	'codemirror/mode/go/go.js'
 ]
 self.addEventListener('install',e=>{
 	var cachePromise=caches.open(cacheName).then(cache=>{

@@ -52,7 +52,8 @@ const vm=new Vue({
 		run(){
 			const req={
 				lang:this.lang,
-				code:this.code
+				code:this.code,
+				token:argv.token||''
 			}
 			this.sandBox.postMessage(JSON.stringify(req),'*')
 		},
