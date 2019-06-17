@@ -1,60 +1,64 @@
 <html style="overflow:auto;-webkit-text-size-adjust:none">
-	<head>
-		<meta http-equiv="Content-Type"content="text/html;charset=utf-8"/>
-		<link rel="stylesheet"href="plm.css"/>
-		<style>
-			@font-face{
-				font-family: DejaVuSansMono;
-				src: url(DejaVuSansMono.ttf);
-			}
-			body{
-				font-family: DejaVuSansMono;
-				font-size: 15px;
-				white-space: nowrap;
-			}
-		</style>
-		<script>
-			console.log=s=>{
-				if (s instanceof Error) s=s.toString()
-				else if (typeof s=='object') s=JSON.stringify(s)
-				document.body.innerHTML+=s+'<br/>'
-			}
-			addEventListener('message',e=>{
-				document.body.innerHTML=''
-				const startTime=new Date()
-				const req=JSON.parse(e.data)
-				try{
-					if (req.lang=='javascript')
-						(new Function(req.code))()
-					else{
-						var xhr=new XMLHttpRequest()
-						var url
-						if (req.lang=='python')
-							url='https://test-git-master.jwhj.now.sh/py/a.py'
-						else{
-							url=`https://njypvz-8080-${req.token}.dev.ide.live/`
-						}
-						xhr.open('POST',url,true)
-						// xhr.open('POST','http://localhost:8081',true)
-						xhr.send(req.code)
-						xhr.onreadystatechange=()=>{
-							if (xhr.readyState==4 && xhr.status==200){
-								var res=decodeURIComponent(escape(xhr.responseText))
-								console.log(res.replace(/\n/g,'<br/>').replace(/ /g,'&nbsp;'))
-								console.log('<hr/>')
-								console.log('Time: '+(new Date()-startTime)+'ms')
-							}
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+	<link rel="stylesheet" href="plm.css" />
+	<style>
+		@font-face {
+			font-family: DejaVuSansMono;
+			src: url(DejaVuSansMono.ttf);
+		}
+
+		body {
+			font-family: DejaVuSansMono;
+			font-size: 15px;
+			white-space: nowrap;
+		}
+	</style>
+	<script>
+		console.log = s => {
+			if (s instanceof Error) s = s.toString()
+			else if (typeof s == 'object') s = JSON.stringify(s)
+			document.body.innerHTML += s + '<br/>'
+		}
+		addEventListener('message', e => {
+			document.body.innerHTML = ''
+			const startTime = new Date()
+			const req = JSON.parse(e.data)
+			try {
+				if (req.lang == 'javascript')
+					(new Function(req.code))()
+				else {
+					var xhr = new XMLHttpRequest()
+					var url
+					if (req.lang == 'python')
+						url = 'https://test-git-master.jwhj.now.sh/py/a.py'
+					else {
+						url = `https://njypvz-8080-${req.token}.dev.ide.live/`
+					}
+					xhr.open('POST', url, true)
+					// xhr.open('POST','http://localhost:8081',true)
+					xhr.send(req.code)
+					xhr.onreadystatechange = () => {
+						if (xhr.readyState == 4 && xhr.status == 200) {
+							var res = decodeURIComponent(escape(xhr.responseText))
+							console.log(res.replace(/\n/g, '<br/>').replace(/ /g, '&nbsp;'))
+							console.log('<hr/>')
+							console.log('Time: ' + (new Date() - startTime) + 'ms')
 						}
 					}
-				}catch(ex){
-					console.log(ex)
 				}
-				if (req.lang=='javascript'){
-					console.log('<hr/>')
-					console.log('Time: '+(new Date()-startTime)+'ms')
-				}
-			})
-		</script>
-	</head>
-	<body></body>
+			} catch (ex) {
+				console.log(ex)
+			}
+			if (req.lang == 'javascript') {
+				console.log('<hr/>')
+				console.log('Time: ' + (new Date() - startTime) + 'ms')
+			}
+		})
+	</script>
+</head>
+
+<body></body>
+
 </html>
