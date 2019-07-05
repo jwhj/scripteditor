@@ -128,6 +128,7 @@ const vm = new Vue({
 			const code = await getCloudScore()
 			for (let f in code)
 				localStorage['file_' + f] = code[f]
+			this.loadFiles()
 		}
 	},
 	mounted() {
