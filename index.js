@@ -23,7 +23,8 @@ function decode(s) {
 }
 async function getCloudScore() {
 	const q = new AV.Query(AV.User)
-	return (await q.get(AV.User.current().id)).get('code') || {}
+	const s = (await q.get(AV.User.current().id)).get('code') || '{}'
+	return JSON.parse(s)
 }
 const editor = {
 	template: '#editorTpl',
@@ -120,7 +121,7 @@ const vm = new Vue({
 					code[key.substr(5)] = localStorage[key]
 				}
 			}
-			AV.User.current().set('code', code)
+			AV.User.current().set('code', JSON.stringify(code))
 			AV.User.current().save().catch(alert)
 		},
 		async sync() {
