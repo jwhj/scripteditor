@@ -1,3 +1,7 @@
+AV.init({
+	appId: 'H57GWOy9H3JbDg8oUAkSwRP8-MdYXbMMI',
+	appKey: 'xMw606rukOk3FnhLYEQJRqUv'
+})
 var cm
 const argv = {}
 location.search.substr(1).split('&').forEach(str => {
@@ -16,6 +20,10 @@ function encode(s) {
 }
 function decode(s) {
 	return atou(s.replace(/_/g, '/').replace(/-/g, '+').replace(/`/g, ''))
+}
+async function getCloudScore() {
+	const q = new AV.Query(AV.User)
+	return (await q.get(AV.User.current().id)).get('code') || {}
 }
 const editor = {
 	template: '#editorTpl',
@@ -42,6 +50,10 @@ const vm = new Vue({
 		code: '',
 		id: 'fsd',
 		lang: argv.lang || 'javascript',
+		showCloud: false,
+		user: null,
+		username: '',
+		password: '',
 		showMenu: false,
 		beginTime: new Date(),
 		consoleFullscreen: false,
@@ -93,11 +105,34 @@ const vm = new Vue({
 				this.consoleFullscreen = !this.consoleFullscreen
 			}
 			else this.showMenu = !this.showMenu
+		},
+		login() {
+			AV.User.logIn(this.username, this.password).then(res => {
+				this.user = res
+				this.password = ''
+			}).catch(alert)
+		},
+		async upload() {
+			const code = await getCloudScore()
+			for (let i = 0; i < localStorage.length; i++) {
+				const key = localStorage.key(i)
+				if (key.indexOf('file_') == 0) {
+					code[key.substr(5)] = localStorage[key]
+				}
+			}
+			AV.User.current().set('code', code)
+			AV.User.current().save().catch(alert)
+		},
+		async sync() {
+			const code = await getCloudScore()
+			for (let f in code)
+				localStorage['file_' + f] = code[f]
 		}
 	},
 	mounted() {
 		this.sandBox = document.getElementById(this.id).contentWindow
 		this.loadFiles()
+		this.user = AV.User.current()
 	}
 })
 if ('serviceWorker' in navigator) {
